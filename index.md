@@ -1,0 +1,32 @@
+<html> 
+<head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  </head>
+  <body>
+<a-scene>
+      <a-sky color= #87CEFA></a-sky>  
+ <a-entity camera look-controls wasd-controls position="0 0 0">
+    <a-obj-model src="amphsticks.obj" mtl="amphsticks.mtl" position = "1.246 -1.86 0"></a-obj-model>
+    <a-entity cursor="fuse: true; "
+        raycaster="far: 5"
+          position="-.141 -1.359 -2.458"
+          geometry="primitive: ring"
+          scale = ".1 .1 .1"
+          material="color: black; shader: flat">
+  <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
+               fill="forwards" from="0.01 0.01 0.01" to=".1 .1 .1"></a-animation>
+  <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
+               fill="backwards" from=".2 .2 .2" to="0.02 0.02 0.02"></a-animation>
+</a-entity>
+</a-entity>
+<a-box scale="50 30 2" position="0 10.65 -17" color=#87CEFA>
+<a-animation begin="click" attribute="visible" to="false"></a-animation>    
+</a-box>
+  <a-cylinder position="-3.18 -4.35 -6.29" id="ground" color=#fffcc1 radius="500" height="0.1"></a-cylinder>
+<a-box color="gray" scale="7 .2 2000" position="0 -4.34 0"></a-box>
+<a-obj-model src="cacti.obj" position="5.438 -2.44 -33.5" color="green"></a-obj-model>
+<a-obj-model src="cacti.obj" position="-7.99 -2.44 -54.26" color="green"></a-obj-model>
+
+</a-scene>
+  </body>
+</html>
