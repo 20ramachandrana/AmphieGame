@@ -2,14 +2,14 @@
 <head>
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.js"></script>
+    <script src="../build.js"></script>
   </head>
   <body>
 <a-scene>
       <a-sky color= #87CEFA></a-sky>  
- <a-entity camera id="amph" look-controls touch-controls wasd-controls position="0 0 0">
+ <a-entity camera id="amph" look-controls mouse-cursor wasd-controls position="0 0 0">
     <a-obj-model src="amphsticks.obj" mtl="amphsticks.mtl" position = "1.246 -1.86 0"></a-obj-model>
     <a-entity cursor="fuse: true; "
-        raycaster="far: 5"
           position="-.141 -1.359 -2.458"
           geometry="primitive: ring"
           scale = ".1 .1 .1"
@@ -28,6 +28,9 @@
 <a-box color="gray" scale="7 .2 2000" position="0 -4.34 0"></a-box>
 <a-obj-model src="cacti.obj" position="5.438 -2.44 -33.5" color="green"></a-obj-model>
 <a-obj-model src="cacti.obj" position="-7.99 -2.44 -54.26" color="green"></a-obj-model>
+<a-cylinder color = "white" position="0 -4.695 -6.501">
+<a-animation begin="click" attribute="material.color" from="white" to = "red"></a-animation>    
+</a-cylinder>
 </a-scene>
   </body>
 </html>
