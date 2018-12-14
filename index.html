@@ -3,11 +3,12 @@
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.js"></script>
     <script src="../build.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
   </head>
   <body>
-<a-scene>
+<a-scene >
       <a-sky color= #87CEFA></a-sky>  
- <a-entity camera id="amph" look-controls wasd-controls position="0 0 0">
+ <a-entity camera id="amph" look-controls wasd-controls ="acceleration: 666" position="0 0 0">
     <a-obj-model src="amphsticks.obj" mtl="amphsticks.mtl" position = "1.246 -1.86 0"></a-obj-model>
     <a-entity cursor="fuse: true; "
           raycaster="far: 5;"
