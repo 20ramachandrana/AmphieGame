@@ -1,6 +1,5 @@
-<html> 
+ <html> 
 <head>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.js"></script>
     <script src="../build.js"></script>
@@ -8,10 +7,10 @@
   <body>
 <a-scene>
       <a-sky color= #87CEFA></a-sky>  
- <a-entity camera id="amph" look-controls wasd-controls position="0 0 0">
+ <a-entity camera id="amph" look-controls mouse-cursor wasd-controls position="0 0 0">
     <a-obj-model src="amphsticks.obj" mtl="amphsticks.mtl" position = "1.246 -1.86 0"></a-obj-model>
     <a-entity cursor="fuse: true; "
-          raycaster="far: 5;"
+              raycaster="far: 5;"
           position="-.141 -1.359 -2.458"
           geometry="primitive: ring"
           scale = ".1 .1 .1"
@@ -35,6 +34,7 @@
 <a-cylinder color = "white" position="0 -4.695 -6.501">
 <a-animation begin="click" attribute="material.color" from="white" to = "red"></a-animation>    
 </a-cylinder>
+
 </a-scene>
   </body>
 </html>
