@@ -8,8 +8,9 @@
   <body>
 <a-scene physics="gravity:9.8">
       <a-sky color= #87CEFA></a-sky>  
- <a-entity camera id="amph" look-controls mouse-cursor wasd-controls="acceleration: 150" dynamic-body="shape: auto; mass: 100" position="0 0 0">
-    <a-obj-model src="amphsticks.obj" mtl="amphsticks.mtl" position = "1.246 -1.86 0" ></a-obj-model>
+ <a-entity camera id="amph" look-controls mouse-cursor wasd-controls="acceleration: 150" position="0 0 0">
+<a-entity dynamic-body="shape: auto; mass: 100">   
+<a-obj-model src="amphsticks.obj" mtl="amphsticks.mtl" position = "1.246 -1.86 0" ></a-obj-model>
     <a-entity cursor="fuse: true; "
               raycaster="far: 5;"
           position="-.141 -1.359 -2.458"
@@ -22,6 +23,7 @@
                fill="backwards" from=".2 .2 .2" to="0.02 0.02 0.02"></a-animation>
 </a-entity>
 </a-entity>
+ </a-entity>
 <a-box scale="50 30 2" position="0 10.65 -17" color=#87CEFA>
 <a-text color="black" value="all you can eat" scale=".1 0.15 1" position="-.07 0 .68"></a-text>
    <a-text color="black" value="you are an ampharos with a rubber band on his limb. this is because he does not have real hands to hold chopsticks with." align = "center" position=".004 -.103 .544" scale=".07 .12 .2"></a-text>
