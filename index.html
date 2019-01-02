@@ -1,43 +1,107 @@
- <html> 
+ <!DOCTYPE html>
+<html>
 <head>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.js"></script>
-    <script src="../build.js"></script>
- <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.3.0/dist/aframe-physics-system.min.js"></script>
-  </head>
-  <body>
-<a-scene physics="gravity:9.8">
-      <a-sky color= #87CEFA></a-sky>  
- <a-entity camera id="amph" look-controls mouse-cursor wasd-controls="acceleration: 150" position="0 0 0">
- <a-entity dynamic-body="shape: auto; mass: 100">   
-<a-obj-model src="amphsticks.obj" mtl="amphsticks.mtl" position = "1.246 -1.86 0" ></a-obj-model>
-    <a-entity cursor="fuse: true; "
-              raycaster="far: 5;"
-          position="-.141 -1.359 -2.458"
-          geometry="primitive: ring"
-          scale = ".1 .1 .1"
-          material="color: black; shader: flat">
-  <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
-               fill="forwards" from="0.01 0.01 0.01" to=".1 .1 .1"></a-animation>
-  <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
-               fill="backwards" from=".2 .2 .2" to="0.02 0.02 0.02"></a-animation>
-</a-entity>
-</a-entity>
- </a-entity>
-<a-box scale="50 30 2" position="0 10.65 -17" color=#87CEFA>
-<a-text color="black" value="all you can eat" scale=".1 0.15 1" position="-.07 0 .68"></a-text>
-   <a-text color="black" value="you are an ampharos with a rubber band on his limb. this is because he does not have real hands to hold chopsticks with." align = "center" position=".004 -.103 .544" scale=".07 .12 .2"></a-text>
-    <a-text color = "black" value="despite this, you must eat as much as you can without eating the bar of soap hidden in the background. " align="center" position = "-0.002 -0.196 0.601" scale=".07 .120 .2"> </a-text>
-<a-animation begin="click" attribute="visible" to="false"></a-animation>    
-</a-box>
-  <a-cylinder position="-3.18 -4.35 -6.29" id="ground" color=#fffcc1 radius="500" height="0.1"></a-cylinder>
-<a-box color="gray" scale="7 .2 2000" position="0 -4.34 0"></a-box>
-<a-obj-model src="cacti.obj" position="5.438 -2.44 -33.5" color="green"></a-obj-model>
-<a-obj-model src="cacti.obj" position="-7.99 -2.44 -54.26" color="green"></a-obj-model>
-<a-cylinder color = "white" position="0 -4.695 -6.501">
-<a-animation begin="click" attribute="material.color" from="white" to = "red"></a-animation>    
-</a-cylinder>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+</head>
+<body onload="startGame()">
+<script>
 
-</a-scene>
-  </body>
+var myGamePiece;
+var floor;
+function startGame() {
+    myGamePiece = new component(200, 200, "https://raw.githubusercontent.com/20ramachandrana/AmphieGame/master/pixil-layer-Background.png", -40, 90, "image");
+    floor = new component(480, 40, "green", 0, 240, "")
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+        },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    }
+}
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+    }
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        if (type == "image") {
+            ctx.drawImage(this.image, 
+                this.x, 
+                this.y,
+                this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }   
+}
+function updateGameArea() {
+    myGameArea.clear();
+    myGamePiece.newPos();
+    myGamePiece.update();
+    floor.update();
+}
+
+function moveup() {
+    myGamePiece.speedY = -1; 
+}
+
+function movedown() {
+    myGamePiece.speedY = 1; 
+}
+
+function moveleft() {
+    myGamePiece.speedX = -1; 
+}
+
+function moveright() {
+    myGamePiece.speedX = 1; 
+}
+
+function clearmove() {
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = 0; 
+}
+</script>
+<div style="text-align:center;width:480px;">
+  <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+  <button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
+  <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
+  <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+</div>
+
+<p>The component constructor uses the built-in image object to draw images onto the canvas.</p>
+
+</body>
 </html>
