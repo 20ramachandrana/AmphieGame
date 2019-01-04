@@ -16,8 +16,8 @@ var floor;
 var soap;
 function startGame() {
     myGamePiece = new component(200, 200, "https://raw.githubusercontent.com/20ramachandrana/AmphieGame/master/pixil-layer-Background.png", -40, 90, "image");
-    floor = new component(420, 70, "green", 0, 220, "")
-    soap = new component(19, 11 "https://raw.githubusercontent.com/20ramachandrana/AmphieGame/master/pixil-frame-0%20(1).png" , -40 , 80, "image")  
+    floor = new component(420, 70, "green", 0, 220, "");
+  //  soap = new component(19, 11 "https://raw.githubusercontent.com/20ramachandrana/AmphieGame/master/pixil-frame-0%20(1).png" , -40 , 80, "image");  
     myGameArea.start();
 }
 
@@ -84,7 +84,7 @@ function updateGameArea() {
     myGamePiece.newPos();
     myGamePiece.update();
     floor.update();
-    soap.update();
+ //   soap.update();
 }
 
 function moveup() {
