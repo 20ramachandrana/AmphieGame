@@ -52,7 +52,7 @@ function component(width, height, color, x, y, type) {
     this.y = y;
    this.gravity = 0.1;
   this.gravitySpeed = 0;
-  this.bounce = 1; 
+  this.bounce = .5; 
   this.update = function() {
         ctx = myGameArea.context;
         if (type == "image") {
